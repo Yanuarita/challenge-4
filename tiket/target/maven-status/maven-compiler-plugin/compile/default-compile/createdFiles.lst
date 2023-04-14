@@ -1,0 +1,13 @@
+com\example\tiket\controller\FilmController.class
+com\example\tiket\service\FilmService.class
+com\example\tiket\TiketApplication.class
+com\example\tiket\model\Film.class
+com\example\tiket\repository\SchedulesRepository.class
+com\example\tiket\service\SchedulesService.class
+com\example\tiket\controller\SchedulesController.class
+com\example\tiket\model\Schedules.class
+com\example\tiket\repository\FilmRepository.class
+com\example\tiket\repository\UsersRepository.class
+com\example\tiket\model\Users.class
+com\example\tiket\service\UsersService.class
+com\example\tiket\controller\UsersController.class

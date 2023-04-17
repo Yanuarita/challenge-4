@@ -10,6 +10,7 @@ import java.util.Iterator;
 import java.util.List;
 
 @RestController
+@RequestMapping("/schedules")
 public class SchedulesController {
 
     @Autowired
@@ -25,27 +26,28 @@ public class SchedulesController {
         return service.saveSchedules(schedules);
     }
 
-//    schedules id, tanggal tayang, jam mulai, jam selesai
+   // schedules id
 
     // tambah satu data
+
     @PostMapping("/addSchedules")
     public Schedules addSchedules(@RequestBody Schedules schedules) {
         return service.addSchedules(schedules);
     }
 
     // tambah beberapa data
-    @PostMapping("/addSchedules")
-    public List<Schedules> addSchedules(@RequestBody List<Schedules> schedules) {
-        return service.addSchedules(schedules);
-    }
 
+    @PostMapping("/addScheduless")
+    public List<Schedules> addScheduless(@RequestBody List<Schedules> schedules ) {
+        return service.addScheduless(schedules);
+    }
     // mendapatkan data
     @GetMapping("/getAll")
     public Iterator<Schedules> getAll() {
-        return service.getAll();
+        return (Iterator<Schedules>)
+        service.getAll();
     }
 
-    // mendapatkan data dari kode film
     @GetMapping("/findByFilmCode")
     public List<Schedules> findByFilmCode(@RequestBody Schedules schedules) {
         return service.findByFilmCode(schedules.getFilmCode());
@@ -57,7 +59,7 @@ public class SchedulesController {
         return service.deleteById(id);
     }
 
-    // memperbarui data
+    // mempebarui data
     @PutMapping("/update")
     public String updateSchedules(@RequestBody Schedules schedules) throws ParseException {
         return service.updateSchedules(schedules);

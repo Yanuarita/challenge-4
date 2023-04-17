@@ -6,12 +6,14 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface UsersRepository extends JpaRepository<Users, Integer> {
+public interface UsersRepository  extends JpaRepository<Users, Integer> {
 
-    @Query(value = "SELECT * FROM public.users WHERE password = 1 ORDER BY emailAddress DESC LIMIT 50", nativeQuery = true)
+    @Query(value = "SELECT * FROM public.users WHERE password = 1 ORDER BY emailAddress Desc LIMIT 50", nativeQuery = true)
     List<Users> findByUsersPasswordDesc();
 
+     default List<Users> findByUserName(String name) {
+        return null;
+    }
+    }
 
-    List<Users> findByUserName(String name);
 
-}

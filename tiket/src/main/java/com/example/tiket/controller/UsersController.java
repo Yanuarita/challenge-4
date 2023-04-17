@@ -10,6 +10,7 @@ import java.util.Iterator;
 import java.util.List;
 
 @RestController
+@RequestMapping("/users")
 public class UsersController {
 
     @Autowired
@@ -25,7 +26,7 @@ public class UsersController {
         return service.saveUsers(users);
     }
 
-//    users id, users name, email address, password
+    // users id
 
     // tambah satu data
     @PostMapping("/addUsers")
@@ -33,33 +34,39 @@ public class UsersController {
         return service.addUsers(users);
     }
 
-    // tambah beberapa data
-    @PostMapping("/addUsers")
-    public List<Users> addUsers(@RequestBody List<Users> users) {
-        return service.addUsers(users);
+    //tambah beberapa data
+    @PostMapping("/addUserss")
+    public List<Users> addUserss(@RequestBody List<Users> users) {
+        return service.addUserss(users);
     }
 
-    // mendapatkan data
+    //mendapatkan data
     @GetMapping("/getAll")
     public Iterator<Users> getAll() {
         return service.getAll();
     }
-
-    // mendapatkan data dari nama user
+    // mendapatkan data
     @GetMapping("/findByUserName")
-    public List<Users> findByUserName(@RequestBody Users users) {
-        return service.findByUserName(users.getUserName());
+    public List<Users> findByUserName(String UserName) {
+        return null;
     }
 
-    // menghapus data dari ID
+    //mengahpus data dari ID
     @DeleteMapping("/delete")
     public String deleteById(@RequestBody int id) {
         return service.deleteById(id);
     }
 
-    // memperbarui data
+    // mempebarui data
     @PutMapping("/update")
     public String updateUsers(@RequestBody Users users) throws ParseException {
         return service.updateUsers(users);
     }
 }
+
+
+
+
+
+
+

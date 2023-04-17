@@ -3,7 +3,6 @@ package com.example.tiket.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Data
 @Entity
@@ -20,5 +19,6 @@ public class Film {
     String filmName;
     @Column(name = "penayangan")
     String penayangan;
+
 
 }

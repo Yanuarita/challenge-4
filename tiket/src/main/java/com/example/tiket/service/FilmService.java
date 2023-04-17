@@ -20,7 +20,6 @@ public class FilmService {
 
     EntityManager entityManager;
 
-
     public FilmService(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
@@ -32,7 +31,7 @@ public class FilmService {
     }
 
     public List<Film> getFilmByFilmNameDesc() {
-        return repository.findByFilmFilmNameDesc();
+        return repository.findByFilmNameDesc();
     }
 
     public Iterator<Film> getAll() {
@@ -41,50 +40,53 @@ public class FilmService {
         else throw new RuntimeException("data tidak tersedia");
     }
 
-    public List<Film> findByFilmCode(int code) {
-        if (repository.findByFilmCode(code).isEmpty()) throw new RuntimeException("kode film tidak ditemukan...!");
-        else return repository.findByFilmCode(code);
-    }
-
-    public String deleteById(int id) {
-        repository.deleteById(id);
-        return "Berhasil di hapus..!";
-    }
-
-
-    public String updateFilm(Film film) throws ParseException {
-        if (isExist(film)) {
-            Film update = repository.findById(film.getFilmId()).orElse(null);
-            update.setFilmId(film.getFilmId());
-            update.setFilmCode(film.getFilmCode());
-            update.setFilmName(film.getFilmName());
-            update.setPenayangan(film.getPenayangan());
-            repository.save(update);
-            return "data berhasil di perbarui..!";
-        } else {
-            throw new RuntimeException("data dengan id " + film.getFilmId() + " tidak tersedia...!");
+        public List<Film> findByFilmCode(int code) {
+            if (repository.findByFilmCode(code).isEmpty()) throw new RuntimeException("kode film tidak ditemukan...!");
+            else return repository.findByFilmCode(code);
         }
-    }
 
-
-    public boolean isExist(Film film) {
-        Optional<Film> check = repository.findById(film.getFilmId());
-        return check.isPresent();
-    }
-
-    public Film addFilm(Film film) {
-        if (isExist(film)) throw new RuntimeException("data sudah tersedia...!");
-        else {
-            return repository.save(film);
+        public String deleteData(int id) {
+            repository.deleteById(id);
+            return "Berhasil di hapus..!";
         }
+
+        public String updateData (Film film) throws ParseException {
+            if (isExist(film)) {
+                Film update = repository.findById(film.getFilmId()).orElse(null);
+                update.setFilmId(film.getFilmId());
+                update.setFilmCode(film.getFilmCode());
+                update.setFilmName(film.getFilmName());
+                update.setPenayangan(film.getPenayangan());
+                repository.save(update);
+                return "data berhasil di perbarui..!";
+            } else {
+                throw new RuntimeException("data dengan id" + film.getFilmId() + " tidak tersedia...!");
+
+            }
+        }
+
+        public boolean isExist(Film film) {
+            Optional<Film> check = repository.findById(film.getFilmId());
+            return check.isPresent();
+        }
+
+        public Film addFiLm(Film film){
+            if (isExist(film)) throw new RuntimeException("data sudah tersedia...!");
+            else {
+                return repository.save(film);
+            }
+        }
+
+        public List<Film> addFilms (List <Film> film) {
+            Iterator<Film> check = film.iterator();
+            while (check.hasNext()) {
+                Film temp = check.next();
+                if (isExist(temp))
+                    throw new RuntimeException("data dengan id" + temp.getFilmId() + " sudah tersedia...!");
+            }
+            return repository.saveAll(film);
+        }
+
     }
 
-    public List<Film> addFilm(List<Film> film) {
-        Iterator<Film> check = film.iterator();
-        while (check.hasNext()) {
-            Film temp = check.next();
-            if (isExist(temp)) throw new RuntimeException("data dengan id " + temp.getFilmId() + " sudah tersedia...!");
-        }
-        return repository.saveAll(film);
-    }
-}
+

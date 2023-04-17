@@ -10,33 +10,33 @@ import java.util.Iterator;
 import java.util.List;
 
 @RestController
+@RequestMapping("/film")
 public class FilmController {
 
     @Autowired
     private FilmService service;
 
-    @GetMapping("/getAllFilmName")
-    public List<Film> getFilmName() {
+    @GetMapping ("/getAllFilmName")
+    public List<Film> getFilmName(){
         return service.getFilmByFilmNameDesc();
     }
 
     @PostMapping("/addFilmAuto")
-    public int addFilmAuto(@RequestBody Film film) {
+    public int addFilmAuto(@RequestBody Film film){
         return service.saveFilm(film);
     }
+    // film id
 
-//    film id, film code, film name, penayangan
-
-    // tambah satu data
+    //tambah satu data
     @PostMapping("/addFilm")
     public Film addFilm(@RequestBody Film film) {
-        return service.addFilm(film);
+        return service.addFiLm(film);
     }
 
     // tambah beberapa data
-    @PostMapping("/addFilm")
-    public List<Film> addFilm(@RequestBody List<Film> film) {
-        return service.addFilm(film);
+    @PostMapping("/addFilms")
+    public List<Film> addFilms(@RequestBody List<Film> films){
+        return service.addFilms(films);
     }
 
     // mendapatkan data
@@ -45,21 +45,23 @@ public class FilmController {
         return service.getAll();
     }
 
-    // mendapatkan data dari kode film
+    //mendapatkan data dari kode film
     @GetMapping("/findByFilmCode")
-    public List<Film> findbyFilmCode(@RequestBody Film film) {
+    public List<Film> findByFilmCode(@RequestBody Film film) {
         return service.findByFilmCode(film.getFilmCode());
     }
 
     // menghapus data dari ID
     @DeleteMapping("/delete")
-    public String deleteById(@RequestBody int id) {
-        return service.deleteById(id);
+    public String deleteData(@RequestBody int id) {
+        return service.deleteData(id);
     }
 
-    // memperbarui data film
+    // mempebarui data
     @PutMapping("/update")
     public String updateFilm(@RequestBody Film film) throws ParseException {
-        return service.updateFilm(film);
+        return service.updateData(film);
+        }
+
     }
-}
+

@@ -10,7 +10,6 @@ import java.sql.Time;
 @Entity
 @Table(name = "schedules")
 public class Schedules {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "schedulesid")
@@ -23,7 +22,7 @@ public class Schedules {
     Time jamMulai;
     @Column(name = "jamselesai")
     Time jamSelesai;
-    @Column (name = "hargatiket")
+    @Column (name ="hargatiket")
     int hargaTiket;
 
 }
